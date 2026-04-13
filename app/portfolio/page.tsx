@@ -121,7 +121,18 @@ export type TikTokClient = {
 }
 
 const tiktokClients: TikTokClient[] = [
-  // Clients will be added here
+  {
+    name: "Mad Rabbit",
+    handle: "@madrabbit",
+    posts: [
+      { url: "https://www.tiktok.com/@madrabbit/video/7502077689801608491", videoId: "7502077689801608491" },
+      { url: "https://www.tiktok.com/@madrabbit/video/7504712888129555742", videoId: "7504712888129555742" },
+      { url: "https://www.tiktok.com/@madrabbit/video/7479136662463810858", videoId: "7479136662463810858" },
+      { url: "https://www.tiktok.com/@madrabbit/video/7268394144639257902", videoId: "7268394144639257902" },
+      { url: "https://www.tiktok.com/@madrabbit/video/7243916416238521646", videoId: "7243916416238521646" },
+      { url: "https://www.tiktok.com/@madrabbit/video/7249480156287454507", videoId: "7249480156287454507" },
+    ],
+  },
 ]
 
 // ─── TikTok embed component ───────────────────────────────────────────────────

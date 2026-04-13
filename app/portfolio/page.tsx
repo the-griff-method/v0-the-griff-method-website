@@ -106,7 +106,101 @@ const instagramClients: InstagramClient[] = [
   },
 ]
 
-// ─── Instagram embed component ────────────────────────────────────────────────
+// ─── TikTok posts data (add full video URLs here) ─────────────────────────────
+
+export type TikTokPost = {
+  url: string
+  videoId: string
+  views?: string
+}
+
+export type TikTokClient = {
+  name: string
+  handle: string
+  posts: TikTokPost[]
+}
+
+const tiktokClients: TikTokClient[] = [
+  // Clients will be added here
+]
+
+// ─── TikTok embed component ───────────────────────────────────────────────────
+
+function TikTokEmbed({ post }: { post: TikTokPost }) {
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const tryProcess = () => {
+      if ((window as any).tiktokEmbed) {
+        ;(window as any).tiktokEmbed.lib.render()
+      }
+    }
+    const t = setTimeout(tryProcess, 300)
+    return () => clearTimeout(t)
+  }, [post.url])
+
+  return (
+    <div className="w-full flex justify-center">
+      <blockquote
+        className="tiktok-embed"
+        cite={post.url}
+        data-video-id={post.videoId}
+        style={{ maxWidth: "100%", minWidth: "280px" }}
+      >
+        <section />
+      </blockquote>
+    </div>
+  )
+}
+
+// ─── TikTok post card ─────────────────────────────────────────────────────────
+
+function TikTokPostCard({ post, index }: { post: TikTokPost; index: number }) {
+  return (
+    <ScrollReveal direction="up" delay={index * 100} duration={700}>
+      <div className="group relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-1">
+        {/* TikTok gradient top accent bar */}
+        <div className="h-0.5 w-full bg-gradient-to-r from-[#69C9D0] via-[#010101] to-[#ff0050]" />
+
+        {/* Platform badge */}
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm rounded-full px-2.5 py-1 border border-white/10">
+          <svg className="h-3 w-3 text-[#ff0050]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+          </svg>
+          <span className="text-[10px] text-white/70 font-medium">TikTok</span>
+        </div>
+
+        {/* Embed */}
+        <div className="p-3">
+          <TikTokEmbed post={post} />
+        </div>
+
+        {/* Footer row */}
+        <div className="flex items-center justify-between px-4 pb-4">
+          {post.views && (
+            <div className="flex items-center gap-1.5">
+              <svg className="h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span className="text-sm font-semibold text-white">{post.views}</span>
+              <span className="text-xs text-muted-foreground">views</span>
+            </div>
+          )}
+          <a
+            href={post.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-white transition-colors"
+          >
+            View on TikTok <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
+      </div>
+    </ScrollReveal>
+  )
+}
+
+
 
 function InstagramEmbed({ url }: { url: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -246,18 +340,31 @@ function InstagramEmpty() {
 export default function PortfolioPage() {
   const [activePlatform, setActivePlatform] = useState<string>("instagram")
 
-  // Load Instagram embed script once
+  // Load platform embed scripts
   useEffect(() => {
     if (typeof window === "undefined") return
-    if (document.getElementById("instagram-embed-script")) {
-      if ((window as any).instgrm) (window as any).instgrm.Embeds.process()
-      return
+    if (activePlatform === "instagram") {
+      if (document.getElementById("instagram-embed-script")) {
+        if ((window as any).instgrm) (window as any).instgrm.Embeds.process()
+        return
+      }
+      const script = document.createElement("script")
+      script.id = "instagram-embed-script"
+      script.src = "https://www.instagram.com/embed.js"
+      script.async = true
+      document.body.appendChild(script)
     }
-    const script = document.createElement("script")
-    script.id = "instagram-embed-script"
-    script.src = "https://www.instagram.com/embed.js"
-    script.async = true
-    document.body.appendChild(script)
+    if (activePlatform === "tiktok") {
+      if (document.getElementById("tiktok-embed-script")) {
+        if ((window as any).tiktokEmbed) (window as any).tiktokEmbed.lib.render()
+        return
+      }
+      const script = document.createElement("script")
+      script.id = "tiktok-embed-script"
+      script.src = "https://www.tiktok.com/embed.js"
+      script.async = true
+      document.body.appendChild(script)
+    }
   }, [activePlatform])
 
   const activePlatformData = platforms.find((p) => p.id === activePlatform)!
@@ -358,6 +465,11 @@ export default function PortfolioPage() {
                   {instagramClients.reduce((acc, c) => acc + c.posts.length, 0)} posts · {instagramClients.length} clients
                 </span>
               )}
+              {activePlatform === "tiktok" && tiktokClients.length > 0 && (
+                <span className="text-sm text-muted-foreground ml-auto">
+                  {tiktokClients.reduce((acc, c) => acc + c.posts.length, 0)} posts · {tiktokClients.length} clients
+                </span>
+              )}
             </div>
           </ScrollReveal>
 
@@ -393,8 +505,38 @@ export default function PortfolioPage() {
               </div>
             ))}
 
+          {/* TikTok grid */}
+          {activePlatform === "tiktok" &&
+            (tiktokClients.length === 0 ? (
+              <ComingSoon platform={activePlatformData} />
+            ) : (
+              <div className="space-y-20">
+                {tiktokClients.map((client) => (
+                  <div key={client.name}>
+                    <div className="flex items-center gap-4 mb-8">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{client.name}</h3>
+                        <p className="text-sm text-muted-foreground">{client.handle}</p>
+                      </div>
+                      <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                      <span className="text-xs text-muted-foreground border border-white/10 rounded-full px-3 py-1">
+                        {client.posts.length} {client.posts.length === 1 ? "post" : "posts"}
+                      </span>
+                    </div>
+                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                      {client.posts.map((post, i) => (
+                        <div key={i} className="break-inside-avoid">
+                          <TikTokPostCard post={post} index={i} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+
           {/* Other platforms — coming soon */}
-          {activePlatform !== "instagram" && (
+          {activePlatform !== "instagram" && activePlatform !== "tiktok" && (
             <ComingSoon platform={activePlatformData} />
           )}
         </div>

@@ -68,6 +68,7 @@ export type InstagramPost = {
 }
 
 const instagramPosts: InstagramPost[] = [
+  { url: "https://www.instagram.com/reel/Cucjun_J_MG/" },
   { url: "https://www.instagram.com/p/DKfZwPqTnfQ/" },
   { url: "https://www.instagram.com/p/DJewtngOtzy/" },
   { url: "https://www.instagram.com/p/DIjibepz5_o/" },

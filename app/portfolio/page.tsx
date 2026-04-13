@@ -68,7 +68,10 @@ export type InstagramPost = {
 }
 
 const instagramPosts: InstagramPost[] = [
-  // Posts will be added here
+  { url: "https://www.instagram.com/p/DKfZwPqTnfQ/" },
+  { url: "https://www.instagram.com/p/DJewtngOtzy/" },
+  { url: "https://www.instagram.com/p/DIjibepz5_o/" },
+  { url: "https://www.instagram.com/p/DHweAWVSwJn/" },
 ]
 
 // ─── Instagram embed component ────────────────────────────────────────────────

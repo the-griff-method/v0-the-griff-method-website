@@ -67,25 +67,43 @@ export type InstagramPost = {
   label?: string
 }
 
-const instagramPosts: InstagramPost[] = [
-  { url: "https://www.instagram.com/reel/Cucjun_J_MG/" },
-  { url: "https://www.instagram.com/p/DKfZwPqTnfQ/" },
-  { url: "https://www.instagram.com/p/DJewtngOtzy/" },
-  { url: "https://www.instagram.com/p/DIjibepz5_o/" },
-  { url: "https://www.instagram.com/p/DHweAWVSwJn/" },
-  { url: "https://www.instagram.com/p/DHZNr4buljt/" },
-  { url: "https://www.instagram.com/p/DEXxUS3vMMk/" },
-  { url: "https://www.instagram.com/p/DD7rl0rzbPq/" },
-  { url: "https://www.instagram.com/reel/DCR8lNSSCLy/" },
-  { url: "https://www.instagram.com/reel/DIeqOq8veos/" },
-  { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
-  { url: "https://www.instagram.com/p/DDK6mA3TFVp/" },
-  { url: "https://www.instagram.com/p/C_lPJNWv4tn/" },
-  { url: "https://www.instagram.com/p/C-k9apdPUb5/" },
-  { url: "https://www.instagram.com/reel/DAoAeGkp9Ac/" },
-  { url: "https://www.instagram.com/reel/DGTf12UO0z-/" },
-  { url: "https://www.instagram.com/reel/DTakKGCAGeN/" },
-  { url: "https://www.instagram.com/reel/DVgYKduErdu/" },
+export type InstagramClient = {
+  name: string
+  handle: string
+  posts: InstagramPost[]
+}
+
+const instagramClients: InstagramClient[] = [
+  {
+    name: "Mad Rabbit",
+    handle: "@madrabbit",
+    posts: [
+      { url: "https://www.instagram.com/reel/Cucjun_J_MG/" },
+      { url: "https://www.instagram.com/p/DKfZwPqTnfQ/" },
+      { url: "https://www.instagram.com/p/DJewtngOtzy/" },
+      { url: "https://www.instagram.com/p/DIjibepz5_o/" },
+      { url: "https://www.instagram.com/p/DHweAWVSwJn/" },
+      { url: "https://www.instagram.com/p/DHZNr4buljt/" },
+      { url: "https://www.instagram.com/p/DEXxUS3vMMk/" },
+      { url: "https://www.instagram.com/p/DD7rl0rzbPq/" },
+      { url: "https://www.instagram.com/reel/DCR8lNSSCLy/" },
+      { url: "https://www.instagram.com/reel/DIeqOq8veos/" },
+      { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
+      { url: "https://www.instagram.com/p/DDK6mA3TFVp/" },
+      { url: "https://www.instagram.com/p/C_lPJNWv4tn/" },
+      { url: "https://www.instagram.com/p/C-k9apdPUb5/" },
+      { url: "https://www.instagram.com/reel/DAoAeGkp9Ac/" },
+      { url: "https://www.instagram.com/reel/DGTf12UO0z-/" },
+    ],
+  },
+  {
+    name: "Biggby Coffee",
+    handle: "@biggbycoffee",
+    posts: [
+      { url: "https://www.instagram.com/reel/DTakKGCAGeN/" },
+      { url: "https://www.instagram.com/reel/DVgYKduErdu/" },
+    ],
+  },
 ]
 
 // ─── Instagram embed component ────────────────────────────────────────────────
@@ -335,9 +353,9 @@ export default function PortfolioPage() {
                   background: `linear-gradient(to right, ${activePlatformData.color}60, transparent)`,
                 }}
               />
-              {activePlatform === "instagram" && instagramPosts.length > 0 && (
+              {activePlatform === "instagram" && instagramClients.length > 0 && (
                 <span className="text-sm text-muted-foreground ml-auto">
-                  {instagramPosts.length} {instagramPosts.length === 1 ? "post" : "posts"}
+                  {instagramClients.reduce((acc, c) => acc + c.posts.length, 0)} posts · {instagramClients.length} clients
                 </span>
               )}
             </div>
@@ -345,13 +363,31 @@ export default function PortfolioPage() {
 
           {/* Instagram grid */}
           {activePlatform === "instagram" &&
-            (instagramPosts.length === 0 ? (
+            (instagramClients.length === 0 ? (
               <InstagramEmpty />
             ) : (
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-                {instagramPosts.map((post, i) => (
-                  <div key={i} className="break-inside-avoid">
-                    <InstagramPostCard post={post} index={i} />
+              <div className="space-y-20">
+                {instagramClients.map((client) => (
+                  <div key={client.name}>
+                    {/* Client header */}
+                    <div className="flex items-center gap-4 mb-8">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{client.name}</h3>
+                        <p className="text-sm text-muted-foreground">{client.handle}</p>
+                      </div>
+                      <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                      <span className="text-xs text-muted-foreground border border-white/10 rounded-full px-3 py-1">
+                        {client.posts.length} {client.posts.length === 1 ? "post" : "posts"}
+                      </span>
+                    </div>
+                    {/* Posts grid */}
+                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                      {client.posts.map((post, i) => (
+                        <div key={i} className="break-inside-avoid">
+                          <InstagramPostCard post={post} index={i} />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>

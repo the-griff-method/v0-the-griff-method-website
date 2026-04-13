@@ -133,6 +133,15 @@ const tiktokClients: TikTokClient[] = [
       { url: "https://www.tiktok.com/@madrabbit/video/7249480156287454507", videoId: "7249480156287454507" },
     ],
   },
+  {
+    name: "Shop 26 Mens Salon",
+    handle: "@shop26menssalon",
+    posts: [
+      { url: "https://www.tiktok.com/@shop26menssalon/video/7604941048418159885", videoId: "7604941048418159885" },
+      { url: "https://www.tiktok.com/@shop26menssalon/video/7594893742688013582", videoId: "7594893742688013582" },
+      { url: "https://www.tiktok.com/@shop26menssalon/video/7586741037314428173", videoId: "7586741037314428173" },
+    ],
+  },
 ]
 
 // ─── TikTok embed component ───────────────────────────────────────────────────

@@ -76,6 +76,9 @@ const instagramPosts: InstagramPost[] = [
   { url: "https://www.instagram.com/p/DEXxUS3vMMk/" },
   { url: "https://www.instagram.com/p/DD7rl0rzbPq/" },
   { url: "https://www.instagram.com/reel/DCR8lNSSCLy/" },
+  { url: "https://www.instagram.com/reel/DIeqOq8veos/" },
+  { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
+  { url: "https://www.instagram.com/p/DDK6mA3TFVp/" },
 ]
 
 // ─── Instagram embed component ────────────────────────────────────────────────

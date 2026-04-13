@@ -60,6 +60,13 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <Link
+                href="/portfolio"
+                className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
+              >
+                Portfolio
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <Link
                 href="/about"
                 className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
               >
@@ -130,6 +137,12 @@ export function Navigation() {
             className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
           >
             Case Studies
+          </Link>
+          <Link
+            href="/portfolio"
+            className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
+          >
+            Portfolio
           </Link>
           <Link
             href="/about"

@@ -80,6 +80,7 @@ const instagramPosts: InstagramPost[] = [
   { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
   { url: "https://www.instagram.com/p/DDK6mA3TFVp/" },
   { url: "https://www.instagram.com/p/C_lPJNWv4tn/" },
+  { url: "https://www.instagram.com/p/C-k9apdPUb5/" },
 ]
 
 // ─── Instagram embed component ────────────────────────────────────────────────

@@ -158,6 +158,79 @@ const tiktokClients: TikTokClient[] = [
   },
 ]
 
+// ─── Snapchat data ────────────────────────────────────────────────────────────
+
+export type SnapchatPost = {
+  url: string
+  title?: string
+  views?: string
+}
+
+export type SnapchatClient = {
+  name: string
+  handle: string
+  posts: SnapchatPost[]
+}
+
+const snapchatClients: SnapchatClient[] = [
+  {
+    name: "Mad Rabbit",
+    handle: "@shopmadrabbit",
+    posts: [
+      { url: "https://www.snapchat.com/@snapchat/spotlight/W7_EDlXWTBiXAEEniNoMPwAAYaGxheHNkcmtuAYyI-GOkAYyI-EpmAAAAAQ" },
+    ],
+  },
+]
+
+// ─── Snapchat post card ───────────────────────────────────────────────────────
+
+function SnapchatPostCard({ post, index }: { post: SnapchatPost; index: number }) {
+  return (
+    <ScrollReveal direction="up" delay={index * 100} duration={700}>
+      <a
+        href={post.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/10 hover:border-[#FFFC00]/40 transition-all duration-500 hover:-translate-y-1"
+        style={{ boxShadow: "none" }}
+        onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 30px rgba(255,252,0,0.15)")}
+        onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+      >
+        {/* Snapchat yellow top accent bar */}
+        <div className="h-0.5 w-full bg-[#FFFC00]" />
+
+        {/* Card body */}
+        <div className="p-8 flex flex-col items-center justify-center text-center min-h-[280px]">
+          {/* Ghost icon */}
+          <div className="w-20 h-20 rounded-full bg-[#FFFC00] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+            <svg className="h-10 w-10 text-black" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.166.5C8.742.5 7.17 2.357 7.17 4.678c0 .516.048 1.055.048 1.055s-.516-.122-1.128-.122c-.757 0-1.543.298-1.543 1.166 0 .75.606 1.26 1.543 1.26.26 0 .478-.048.478-.048s-.5 1.105-.5 2.7c0 2.984 2.226 6.311 6.098 6.311s6.098-3.327 6.098-6.311c0-1.595-.5-2.7-.5-2.7s.218.048.478.048c.937 0 1.543-.51 1.543-1.26 0-.868-.786-1.166-1.543-1.166-.612 0-1.128.122-1.128.122s.048-.539.048-1.055C17.162 2.357 15.59.5 12.166.5zm0 1.5c2.68 0 3.996 1.428 3.996 2.678 0 .3-.024.6-.048.879-.26-.06-.55-.097-.842-.097-.63 0-1.163.194-1.163.194S13.94 4.9 12.166 4.9c-1.775 0-2.943.754-2.943.754s-.533-.194-1.163-.194c-.293 0-.583.037-.842.097-.024-.279-.048-.579-.048-.879C7.17 3.428 8.487 2 12.166 2zm6.27 10.927c-.122.024-.245.048-.366.048-.93 0-1.74-.538-1.74-.538s-.97 1.49-3.964 1.49-3.964-1.49-3.964-1.49-.81.538-1.74.538c-.121 0-.244-.024-.366-.048-.293.665-.47 1.41-.47 2.184 0 2.46 1.775 4.889 4.598 5.311.072.534.427.778.818.778.391 0 .746-.244.818-.778 2.823-.422 4.598-2.851 4.598-5.311 0-.774-.177-1.519-.422-2.184z" />
+            </svg>
+          </div>
+
+          {post.title && <p className="text-white font-medium mb-2">{post.title}</p>}
+
+          {post.views && (
+            <div className="flex items-center gap-1.5 mb-4">
+              <svg className="h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span className="text-sm font-semibold text-white">{post.views}</span>
+              <span className="text-xs text-muted-foreground">views</span>
+            </div>
+          )}
+
+          <div className="flex items-center gap-2 bg-[#FFFC00] text-black text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 group-hover:bg-white">
+            Watch on Snapchat
+            <ExternalLink className="h-3.5 w-3.5" />
+          </div>
+        </div>
+      </a>
+    </ScrollReveal>
+  )
+}
+
 // ─── YouTube data ─────────────────────────────────────────────────────────────
 
 export type YouTubePost = {
@@ -591,6 +664,11 @@ export default function PortfolioPage() {
                   {youtubeClients.reduce((acc, c) => acc + c.posts.length, 0)} videos · {youtubeClients.length} clients
                 </span>
               )}
+              {activePlatform === "snapchat" && snapchatClients.length > 0 && (
+                <span className="text-sm text-muted-foreground ml-auto">
+                  {snapchatClients.reduce((acc, c) => acc + c.posts.length, 0)} posts · {snapchatClients.length} clients
+                </span>
+              )}
             </div>
           </ScrollReveal>
 
@@ -686,10 +764,35 @@ export default function PortfolioPage() {
               </div>
             ))}
 
-          {/* Other platforms — coming soon */}
-          {activePlatform !== "instagram" && activePlatform !== "tiktok" && activePlatform !== "youtube" && (
-            <ComingSoon platform={activePlatformData} />
-          )}
+          {/* Snapchat grid */}
+          {activePlatform === "snapchat" &&
+            (snapchatClients.length === 0 ? (
+              <ComingSoon platform={activePlatformData} />
+            ) : (
+              <div className="space-y-20">
+                {snapchatClients.map((client) => (
+                  <div key={client.name}>
+                    <div className="flex items-center gap-4 mb-8">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{client.name}</h3>
+                        <p className="text-sm text-muted-foreground">{client.handle}</p>
+                      </div>
+                      <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                      <span className="text-xs text-muted-foreground border border-white/10 rounded-full px-3 py-1">
+                        {client.posts.length} {client.posts.length === 1 ? "post" : "posts"}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {client.posts.map((post, i) => (
+                        <div key={i}>
+                          <SnapchatPostCard post={post} index={i} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
       </section>
 

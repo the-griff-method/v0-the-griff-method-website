@@ -53,6 +53,13 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <Link
+                href="/services"
+                className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
+              >
+                Services
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <Link
                 href="/case-studies"
                 className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
               >
@@ -131,6 +138,12 @@ export function Navigation() {
             className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
           >
             Packages
+          </Link>
+          <Link
+            href="/services"
+            className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
+          >
+            Services
           </Link>
           <Link
             href="/case-studies"

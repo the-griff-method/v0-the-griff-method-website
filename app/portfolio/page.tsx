@@ -78,10 +78,10 @@ const instagramClients: InstagramClient[] = [
     name: "Mad Rabbit",
     handle: "@madrabbit",
     posts: [
+      { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
       { url: "https://www.instagram.com/reel/Cucjun_J_MG/" },
       { url: "https://www.instagram.com/reel/DCR8lNSSCLy/" },
       { url: "https://www.instagram.com/reel/DIeqOq8veos/" },
-      { url: "https://www.instagram.com/reel/DJuepcFAmyt/" },
       { url: "https://www.instagram.com/reel/DAoAeGkp9Ac/" },
       { url: "https://www.instagram.com/reel/DGTf12UO0z-/" },
       { url: "https://www.instagram.com/p/DKfZwPqTnfQ/" },
@@ -513,9 +513,9 @@ export default function PortfolioPage() {
                       </span>
                     </div>
                     {/* Posts grid */}
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {client.posts.map((post, i) => (
-                        <div key={i} className="break-inside-avoid">
+                        <div key={i}>
                           <InstagramPostCard post={post} index={i} />
                         </div>
                       ))}
@@ -543,9 +543,9 @@ export default function PortfolioPage() {
                         {client.posts.length} {client.posts.length === 1 ? "post" : "posts"}
                       </span>
                     </div>
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {client.posts.map((post, i) => (
-                        <div key={i} className="break-inside-avoid">
+                        <div key={i}>
                           <TikTokPostCard post={post} index={i} />
                         </div>
                       ))}

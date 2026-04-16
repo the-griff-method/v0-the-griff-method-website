@@ -178,6 +178,8 @@ const snapchatClients: SnapchatClient[] = [
     handle: "@shopmadrabbit",
     posts: [
       { url: "https://www.snapchat.com/@snapchat/spotlight/W7_EDlXWTBiXAEEniNoMPwAAYaGxheHNkcmtuAYyI-GOkAYyI-EpmAAAAAQ" },
+      { url: "https://www.snapchat.com/@snapchat/spotlight/W7_EDlXWTBiXAEEniNoMPwAAYYmpjeXhybnpoAYysaMuzAYysaKVPAAAAAQ" },
+      { url: "https://www.snapchat.com/@snapchat/spotlight/W7_EDlXWTBiXAEEniNoMPwAAYYWlzeG5id29hAYx-jFODAYx-jD18AAAAAQ" },
     ],
   },
 ]

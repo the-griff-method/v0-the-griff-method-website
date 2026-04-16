@@ -97,12 +97,26 @@ const instagramClients: InstagramClient[] = [
     ],
   },
   {
+    name: "Shop 26 Mens Salon",
+    handle: "@shop26menssalon",
+    posts: [
+      { url: "https://www.instagram.com/reel/DSkzOTMkf7Y/" },
+      { url: "https://www.instagram.com/reel/DTdWyONkfpm/" },
+      { url: "https://www.instagram.com/reel/DWCTYH6EWFi/" },
+      { url: "https://www.instagram.com/reel/DVb8Feekcq1/" },
+      { url: "https://www.instagram.com/reel/DVROa6CkebG/" },
+      { url: "https://www.instagram.com/reel/DVMUI3WkQEJ/" },
+    ],
+  },
+  {
     name: "Biggby Coffee",
     handle: "@biggbycoffee",
     posts: [
       { url: "https://www.instagram.com/reel/DTakKGCAGeN/" },
       { url: "https://www.instagram.com/reel/DVgYKduErdu/" },
     ],
+  },
+]
   },
 ]
 

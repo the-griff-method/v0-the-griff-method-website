@@ -117,8 +117,6 @@ const instagramClients: InstagramClient[] = [
     ],
   },
 ]
-  },
-]
 
 // ─── TikTok posts data (add full video URLs here) ─────────────────────────────
 

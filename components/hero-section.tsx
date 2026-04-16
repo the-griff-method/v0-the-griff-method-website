@@ -29,21 +29,20 @@ export function HeroSection() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={600} duration={1000}>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-8 text-balance">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-6 text-balance">
               Unlock Your Social Media Method
             </h2>
           </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={900} duration={1000}>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty">
-              Data-driven strategies that transform your social presence into measurable business growth. No fluff, just
-              results.
+          <ScrollReveal direction="up" delay={750} duration={1000}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto text-pretty">
+              No fluff. Just content that converts and audiences that grow.
             </p>
           </ScrollReveal>
 
           <StaggerContainer
             staggerDelay={150}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
             <MagneticButton
               href="/contact"
@@ -54,18 +53,18 @@ export function HeroSection() {
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </MagneticButton>
             <MagneticButton
-              href="/case-studies"
+              href="/portfolio"
               size="lg"
               className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
             >
-              View Case Studies
+              View Portfolio
             </MagneticButton>
           </StaggerContainer>
 
-          <ScrollReveal direction="up" delay={1200} duration={1000}>
-            <StaggerContainer staggerDelay={200} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <ScrollReveal direction="up" delay={1000} duration={1000}>
+            <div className="flex flex-col sm:flex-row justify-center gap-12 sm:gap-20">
               <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold text-white mb-2 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400">
+                <div className="text-4xl font-bold text-white mb-2 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400">
                   100M+
                 </div>
                 <div className="text-muted-foreground transition-colors duration-300 group-hover:text-white">
@@ -73,22 +72,14 @@ export function HeroSection() {
                 </div>
               </div>
               <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold text-white mb-2 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400">
-                  5+
+                <div className="text-4xl font-bold text-white mb-2 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400">
+                  3+
                 </div>
                 <div className="text-muted-foreground transition-colors duration-300 group-hover:text-white">
                   Years Experience
                 </div>
               </div>
-              <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold text-white mb-2 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400">
-                  50x
-                </div>
-                <div className="text-muted-foreground transition-colors duration-300 group-hover:text-white">
-                  Profile Growth
-                </div>
-              </div>
-            </StaggerContainer>
+            </div>
           </ScrollReveal>
         </div>
       </div>

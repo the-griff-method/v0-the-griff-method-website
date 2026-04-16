@@ -158,6 +158,88 @@ const tiktokClients: TikTokClient[] = [
   },
 ]
 
+// ─── YouTube data ─────────────────────────────────────────────────────────────
+
+export type YouTubePost = {
+  videoId: string
+  views?: string
+}
+
+export type YouTubeClient = {
+  name: string
+  handle: string
+  posts: YouTubePost[]
+}
+
+const youtubeClients: YouTubeClient[] = [
+  {
+    name: "Mad Rabbit",
+    handle: "@madrabbit",
+    posts: [
+      { videoId: "ONPZ2JcU94M" },
+      { videoId: "sxD_BWw7HZw" },
+      { videoId: "iKF78xeQ8Wc" },
+    ],
+  },
+]
+
+// ─── YouTube embed component ──────────────────────────────────────────────────
+
+function YouTubePostCard({ post, index }: { post: YouTubePost; index: number }) {
+  return (
+    <ScrollReveal direction="up" delay={index * 100} duration={700}>
+      <div className="group relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-1">
+        {/* YouTube red top accent bar */}
+        <div className="h-0.5 w-full bg-gradient-to-r from-[#FF0000] via-[#cc0000] to-[#FF0000]" />
+
+        {/* Platform badge */}
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm rounded-full px-2.5 py-1 border border-white/10">
+          <svg className="h-3 w-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+          </svg>
+          <span className="text-[10px] text-white/70 font-medium">YouTube</span>
+        </div>
+
+        {/* Embed */}
+        <div className="p-3">
+          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src={`https://www.youtube.com/embed/${post.videoId}`}
+              title={`YouTube video ${post.videoId}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full rounded-xl"
+              style={{ border: 0 }}
+            />
+          </div>
+        </div>
+
+        {/* Footer row */}
+        <div className="flex items-center justify-between px-4 pb-4">
+          {post.views && (
+            <div className="flex items-center gap-1.5">
+              <svg className="h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span className="text-sm font-semibold text-white">{post.views}</span>
+              <span className="text-xs text-muted-foreground">views</span>
+            </div>
+          )}
+          <a
+            href={`https://www.youtube.com/watch?v=${post.videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-white transition-colors"
+          >
+            Watch on YouTube <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
+      </div>
+    </ScrollReveal>
+  )
+}
+
 // ─── TikTok embed component ───────────────────────────────────────────────────
 
 function TikTokEmbed({ post }: { post: TikTokPost }) {
@@ -504,6 +586,11 @@ export default function PortfolioPage() {
                   {tiktokClients.reduce((acc, c) => acc + c.posts.length, 0)} posts · {tiktokClients.length} clients
                 </span>
               )}
+              {activePlatform === "youtube" && youtubeClients.length > 0 && (
+                <span className="text-sm text-muted-foreground ml-auto">
+                  {youtubeClients.reduce((acc, c) => acc + c.posts.length, 0)} videos · {youtubeClients.length} clients
+                </span>
+              )}
             </div>
           </ScrollReveal>
 
@@ -569,8 +656,38 @@ export default function PortfolioPage() {
               </div>
             ))}
 
+          {/* YouTube grid */}
+          {activePlatform === "youtube" &&
+            (youtubeClients.length === 0 ? (
+              <ComingSoon platform={activePlatformData} />
+            ) : (
+              <div className="space-y-20">
+                {youtubeClients.map((client) => (
+                  <div key={client.name}>
+                    <div className="flex items-center gap-4 mb-8">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{client.name}</h3>
+                        <p className="text-sm text-muted-foreground">{client.handle}</p>
+                      </div>
+                      <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                      <span className="text-xs text-muted-foreground border border-white/10 rounded-full px-3 py-1">
+                        {client.posts.length} {client.posts.length === 1 ? "video" : "videos"}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {client.posts.map((post, i) => (
+                        <div key={i}>
+                          <YouTubePostCard post={post} index={i} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+
           {/* Other platforms — coming soon */}
-          {activePlatform !== "instagram" && activePlatform !== "tiktok" && (
+          {activePlatform !== "instagram" && activePlatform !== "tiktok" && activePlatform !== "youtube" && (
             <ComingSoon platform={activePlatformData} />
           )}
         </div>

@@ -40,26 +40,39 @@ export function HeroSection() {
             </p>
           </ScrollReveal>
 
-          <StaggerContainer
-            staggerDelay={150}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-          >
-            <MagneticButton
-              href="/contact"
-              size="lg"
-              className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
-            >
-              Unlock Your<span className="italic animate-pulse -ml-1"> Method</span>
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </MagneticButton>
-            <MagneticButton
-              href="/portfolio"
-              size="lg"
-              className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
-            >
-              View Portfolio
-            </MagneticButton>
-          </StaggerContainer>
+          <ScrollReveal direction="up" delay={900} duration={900}>
+            <div className="flex flex-col items-center gap-4 mb-16">
+              <MagneticButton
+                href="/contact"
+                size="lg"
+                className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
+              >
+                Unlock Your<span className="italic animate-pulse -ml-1"> Method</span>
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </MagneticButton>
+              <StaggerContainer
+                staggerDelay={80}
+                className="flex flex-wrap justify-center gap-3"
+              >
+                {[
+                  { label: "Portfolio", href: "/portfolio" },
+                  { label: "Services", href: "/services" },
+                  { label: "Case Studies", href: "/case-studies" },
+                  { label: "Contact", href: "/contact" },
+                ].map((dest) => (
+                  <MagneticButton
+                    key={dest.href}
+                    href={dest.href}
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300 group"
+                  >
+                    {dest.label}
+                    <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </MagneticButton>
+                ))}
+              </StaggerContainer>
+            </div>
+          </ScrollReveal>
 
           <ScrollReveal direction="up" delay={1000} duration={1000}>
             <div className="flex flex-col sm:flex-row justify-center gap-12 sm:gap-20">

@@ -66,6 +66,7 @@ const additionalServices = [
 ]
 
 const clients = [
+  { name: "Mad Rabbit", sub: "Health & Wellness / DTC" },
   { name: "Biggby Coffee", sub: "Food & Beverage" },
   { name: "Tire Discounters", sub: "Automotive Retail" },
   { name: "Shop 26 Men's Salon", sub: "Men's Grooming & Lifestyle" },

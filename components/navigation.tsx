@@ -13,11 +13,9 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Increased navigation height from h-16 to h-24 to accommodate much larger logo */}
         <div className="flex justify-between items-center h-24">
           <div className="flex items-center">
             <Link href="/">
-              {/* Made logo much much larger - increased width from 160 to 320, height from 53 to 107, and className from h-12 to h-20 */}
               <Image
                 src="/images/griff-logo.png"
                 alt="The Griff Method"
@@ -39,10 +37,10 @@ export function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               <Link
-                href="/packages"
+                href="/portfolio"
                 className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
               >
-                Packages
+                Portfolio
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <Link
@@ -57,13 +55,6 @@ export function Navigation() {
                 className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
               >
                 Case Studies
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/portfolio"
-                className="text-foreground hover:text-muted-foreground transition-all duration-300 relative group"
-              >
-                Portfolio
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <Link
@@ -121,10 +112,10 @@ export function Navigation() {
             Home
           </a>
           <Link
-            href="/packages"
+            href="/portfolio"
             className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
           >
-            Packages
+            Portfolio
           </Link>
           <Link
             href="/services"
@@ -137,12 +128,6 @@ export function Navigation() {
             className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
           >
             Case Studies
-          </Link>
-          <Link
-            href="/portfolio"
-            className="block px-3 py-2 text-foreground hover:text-muted-foreground transition-all duration-300 hover:translate-x-2"
-          >
-            Portfolio
           </Link>
           <Link
             href="/about"

@@ -10,9 +10,10 @@ interface StaggerContainerProps {
   children: ReactNode
   staggerDelay?: number
   className?: string
+  childClassName?: string
 }
 
-export default function StaggerContainer({ children, staggerDelay = 100, className = "" }: StaggerContainerProps) {
+export default function StaggerContainer({ children, staggerDelay = 100, className = "", childClassName = "" }: StaggerContainerProps) {
   const [isVisible, setIsVisible] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -40,6 +41,7 @@ export default function StaggerContainer({ children, staggerDelay = 100, classNa
     <div ref={containerRef} className={className}>
       {React.Children.map(children, (child, index) => (
         <div
+          className={childClassName}
           style={{
             transform: isVisible ? "translate3d(0, 0, 0)" : "translate3d(0, 30px, 0)",
             opacity: isVisible ? 1 : 0,

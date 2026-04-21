@@ -31,7 +31,7 @@ const primaryServices = [
   {
     icon: LayoutDashboard,
     title: "Social Media Management",
-    description: "Full-service management across every platform — consistent posting, community engagement, and brand voice.",
+    description: "Full-service management across every platform. Consistent posting, community engagement, and brand voice.",
     bullets: ["Daily content posting", "Community management", "Platform optimization", "Brand consistency"],
   },
   {
@@ -102,11 +102,11 @@ export default function ServicesPage() {
       {/* Primary services */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <StaggerContainer staggerDelay={100} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <StaggerContainer staggerDelay={100} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" childClassName="h-full">
             {primaryServices.map((service) => (
               <div
                 key={service.title}
-                className="group relative rounded-2xl bg-[#0a0a0a] border border-white/10 hover:border-white/25 p-6 transition-all duration-500 hover:-translate-y-1"
+                className="group relative rounded-2xl bg-[#0a0a0a] border border-white/10 hover:border-white/25 p-6 transition-all duration-500 hover:-translate-y-1 h-full flex flex-col"
               >
                 <div className="h-0.5 w-full absolute top-0 left-0 rounded-t-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

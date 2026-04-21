@@ -102,20 +102,28 @@ export function PortfolioTeaser() {
     <section className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" duration={1000}>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-4 border border-white/10 rounded-full px-4 py-1.5">
               Featured Work
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 text-balance">
               Content That Performs
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               A taste of what's possible. See the full portfolio for every platform.
             </p>
+            <MagneticButton
+              href="/portfolio"
+              size="lg"
+              className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
+            >
+              See Full Portfolio
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </MagneticButton>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer staggerDelay={150} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+        <StaggerContainer staggerDelay={150} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
           {featuredPosts.map((post) => (
             <div
               key={post.url}
@@ -154,19 +162,6 @@ export function PortfolioTeaser() {
             </div>
           ))}
         </StaggerContainer>
-
-        <ScrollReveal direction="up" delay={300} duration={800}>
-          <div className="text-center">
-            <MagneticButton
-              href="/portfolio"
-              size="lg"
-              className="bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300 group"
-            >
-              See Full Portfolio
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </MagneticButton>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   )

@@ -14,7 +14,7 @@ export function Navigation() {
     <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
-          <div className="flex items-center">
+          <div className="flex-1 flex items-center">
             <Link href="/">
               <Image
                 src="/images/griff-logo.png"
@@ -27,7 +27,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="hidden md:flex items-center justify-center">
             <div className="flex items-center space-x-8">
               <a
                 href="/#home"
@@ -74,7 +74,7 @@ export function Navigation() {
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="flex-1 hidden md:flex justify-end">
             <MagneticButton
               href="/contact"
               variant="outline"

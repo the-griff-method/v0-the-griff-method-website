@@ -1,88 +1,45 @@
-"use client"
-
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import CalendlyWidget from "@/components/calendly-widget"
-import { useState } from "react"
+import ScrollReveal from "@/components/scroll-reveal"
+import { ArrowRight } from "lucide-react"
 
 export default function ContactPage() {
-  const [showCalendly, setShowCalendly] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    business: "",
-  })
-
-  const handleBookConsultation = () => {
-    setShowCalendly(true)
-  }
-
   return (
-    <div className="min-h-screen bg-black">
+    <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">Book Your Free Consultation</h1>
-          <p className="text-xl text-white/80 mb-8 text-pretty">
-            Ready to unlock your social media potential? Let's discuss how The Griff Method can transform your digital
-            presence and drive real results for your business.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Form */}
-      <section className="pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md mx-auto">
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-white mb-2">Your Name</label>
-              <Input
-                placeholder="Full name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-white mb-2">Email Address</label>
-              <Input
-                type="email"
-                placeholder="your.email@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-white mb-2">Business Name</label>
-              <Input
-                placeholder="Your business name"
-                value={formData.business}
-                onChange={(e) => setFormData({ ...formData, business: e.target.value })}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-              />
-            </div>
-
-            <Button
-              onClick={handleBookConsultation}
-              size="lg"
-              className="w-full bg-white text-black hover:bg-muted-foreground hover:text-white transition-all duration-300"
+      <section className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-xl mx-auto">
+          <ScrollReveal direction="fade" duration={1000}>
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-6 border border-white/10 rounded-full px-4 py-1.5">
+              Contact
+            </span>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={150} duration={1000}>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight text-balance">
+              Let's Talk
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={300} duration={1000}>
+            <p className="text-xl text-muted-foreground mb-10 text-pretty">
+              Book a free consultation and let's figure out how to grow your brand.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={450} duration={1000}>
+            <a
+              href="https://calendly.com/thegriffmethod/client-consultation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-black font-semibold px-8 py-4 rounded-full text-base hover:bg-muted-foreground hover:text-white transition-all duration-300 group cursor-pointer"
             >
-              Book My Free Consultation
-            </Button>
-          </div>
+              Book a Consultation
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </ScrollReveal>
         </div>
       </section>
-
-      <CalendlyWidget isOpen={showCalendly} onClose={() => setShowCalendly(false)} prefillData={formData} />
 
       <Footer />
-    </div>
+    </main>
   )
 }

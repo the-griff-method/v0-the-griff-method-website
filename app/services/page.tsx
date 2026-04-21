@@ -94,7 +94,7 @@ export default function ServicesPage() {
         </ScrollReveal>
         <ScrollReveal direction="up" delay={300} duration={1000}>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Full-stack social media — from concept and creation to growth, paid ads, and beyond.
+            Everything your brand needs to grow online.
           </p>
         </ScrollReveal>
       </section>

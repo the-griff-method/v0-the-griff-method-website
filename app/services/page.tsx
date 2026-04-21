@@ -15,7 +15,7 @@ import ScrollReveal from "@/components/scroll-reveal"
 import StaggerContainer from "@/components/stagger-container"
 import MagneticButton from "@/components/magnetic-button"
 
-const services = [
+const primaryServices = [
   {
     icon: Camera,
     title: "Content Creation",
@@ -40,39 +40,38 @@ const services = [
     description: "Data-driven strategy that turns your social presence into measurable growth. No guesswork, just results.",
     bullets: ["Audience targeting", "Content strategy", "Analytics & reporting", "Growth planning"],
   },
+]
+
+const additionalServices = [
   {
     icon: Megaphone,
     title: "Ad Management & Boosting",
-    description: "Paid social that amplifies your best content. Targeted ads that drive traffic, leads, and conversions.",
-    bullets: ["Meta & TikTok ads", "Content boosting", "Audience targeting", "Performance tracking"],
+    description: "Paid social that amplifies your best content and drives real conversions.",
   },
   {
     icon: ShoppingBag,
     title: "TikTok Shop Management",
-    description: "End-to-end TikTok Shop setup and management — from product listings to creator partnerships that convert.",
-    bullets: ["Shop setup & optimization", "Product content", "Creator seeding", "Sales analytics"],
+    description: "End-to-end TikTok Shop setup, product content, and creator seeding.",
   },
   {
     icon: Users,
     title: "Influencer Campaigns",
-    description: "Curated influencer partnerships that reach the right audiences and drive real brand awareness and sales.",
-    bullets: ["Creator sourcing", "Campaign strategy", "Contract & outreach", "Performance reporting"],
+    description: "Curated creator partnerships that reach the right audiences at scale.",
   },
   {
     icon: Globe,
     title: "Website & Landing Pages",
-    description: "Clean, conversion-focused websites and landing pages built to turn social traffic into real business.",
-    bullets: ["Landing page design", "Website development", "Mobile optimization", "Brand alignment"],
+    description: "Conversion-focused sites and pages that turn social traffic into business.",
   },
 ]
 
-const verticals = [
-  { name: "Health & Wellness", sub: "DTC brands, supplements, skincare" },
-  { name: "Food & Beverage", sub: "Cafes, chains, CPG, restaurants" },
-  { name: "Men's Grooming & Lifestyle", sub: "Barbershops, salons, apparel" },
-  { name: "Tattoo & Body Art", sub: "Studios, aftercare, accessories" },
-  { name: "E-Commerce & Retail", sub: "Shopify, Amazon, TikTok Shop" },
-  { name: "Fitness & Sports", sub: "Gyms, athletes, activewear" },
+const clients = [
+  { name: "Biggby Coffee", sub: "Food & Beverage" },
+  { name: "Tire Discounters", sub: "Automotive Retail" },
+  { name: "Shop 26 Men's Salon", sub: "Men's Grooming & Lifestyle" },
+  { name: "Foxhole Private Equity", sub: "Private Equity & Finance" },
+  { name: "New Mexico Military Institute", sub: "Military Education" },
+  { name: "Great Oaks Academy & Trade School", sub: "Education & Vocational" },
 ]
 
 export default function ServicesPage() {
@@ -99,11 +98,11 @@ export default function ServicesPage() {
         </ScrollReveal>
       </section>
 
-      {/* Services grid */}
+      {/* Primary services */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <StaggerContainer staggerDelay={100} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {services.map((service) => (
+            {primaryServices.map((service) => (
               <div
                 key={service.title}
                 className="group relative rounded-2xl bg-[#0a0a0a] border border-white/10 hover:border-white/25 p-6 transition-all duration-500 hover:-translate-y-1"
@@ -131,23 +130,52 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Verticals */}
+      {/* Additional services */}
+      <section className="pb-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal direction="up" duration={700}>
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-5">
+              Also available
+            </p>
+          </ScrollReveal>
+          <StaggerContainer staggerDelay={80} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {additionalServices.map((service) => (
+              <div
+                key={service.title}
+                className="group flex items-start gap-4 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-white/15 px-5 py-4 transition-all duration-300"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-white/10 transition-colors duration-300">
+                  <service.icon className="h-4 w-4 text-white/50 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors duration-300 mb-1">
+                    {service.title}
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{service.description}</p>
+                </div>
+              </div>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Clients */}
       <section className="py-24 px-4 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal direction="up" duration={900}>
             <div className="mb-14">
               <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-4 border border-white/10 rounded-full px-4 py-1.5">
-                Verticals
+                Who I Work With
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-white text-balance">
-                Industries I work in
+                Brands I've built for
               </h2>
             </div>
           </ScrollReveal>
 
           <div className="divide-y divide-white/5">
-            {verticals.map((v, i) => (
-              <ScrollReveal key={v.name} direction="up" delay={i * 60} duration={700}>
+            {clients.map((c, i) => (
+              <ScrollReveal key={c.name} direction="up" delay={i * 60} duration={700}>
                 <div className="flex items-center justify-between py-6 group cursor-default">
                   <div className="flex items-baseline gap-6">
                     <span className="text-xs text-white/20 font-mono tabular-nums w-6">
@@ -155,9 +183,9 @@ export default function ServicesPage() {
                     </span>
                     <div>
                       <p className="text-xl md:text-2xl font-bold text-white group-hover:text-white/80 transition-colors duration-300">
-                        {v.name}
+                        {c.name}
                       </p>
-                      <p className="text-sm text-muted-foreground mt-0.5">{v.sub}</p>
+                      <p className="text-sm text-muted-foreground mt-0.5">{c.sub}</p>
                     </div>
                   </div>
                   <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:border-white/30">
